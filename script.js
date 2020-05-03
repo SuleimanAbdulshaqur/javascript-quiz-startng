@@ -116,14 +116,19 @@ function resetState() {
 function selectAnswer(e) {
 	const selectedButton = e.target;
 	if(selectedButton.dataset.correct) {
+		setStatusClass(selectedButton, selectedButton.dataset.correct)
 		correct++;
 		correctScore.innerHTML = correct;
 	} else {
+		setStatusClass(selectedButton, selectedButton.dataset.correct)
 		wrong++;
 		wrongScore.innerHTML = wrong;
 	}
-  Array.from(answerButtonsElement.children).forEach(button => {
-		setStatusClass(button, button.dataset.correct)
+
+  Array.from(answerButtonsElement.children).forEach(button => {	
+	  	if(button.dataset.correct) {
+			setStatusClass(button, button.dataset.correct)
+		}
 		button.disabled = true;
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
